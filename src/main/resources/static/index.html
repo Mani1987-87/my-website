@@ -136,6 +136,19 @@
     width:100%; aspect-ratio:1/1; border-radius:14px;
     background:radial-gradient(circle at 30% 25%, #f6d3dd, var(--rose) 55%, var(--berry) 130%);
     display:flex; align-items:center; justify-content:center; overflow:hidden;
+    position:relative;
+  }
+  .baker-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .photo-upload-btn{
+    position:absolute; bottom:10px; right:10px; z-index:3;
+    background:var(--berry); color:var(--buttercream);
+    border:2px solid var(--buttercream); border-radius:999px;
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+    font-size:1rem; box-shadow:0 4px 10px rgba(0,0,0,0.25);
+  }
+  .photo-upload-btn:hover{ background:var(--berry-dark); }
+  .photo-upload-btn input[type="file"]{
+    position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;
   }
   .baker-avatar svg{ width:78%; }
   .baker-frame h3{ margin-top:16px; font-size:1.3rem; }
@@ -186,6 +199,10 @@
   .card-art{
     height:150px; position:relative;
     display:flex; align-items:center; justify-content:center;
+    overflow:hidden; background:var(--rose);
+  }
+  .card-art img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   .card-body{ padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px; flex:1; }
   .card-body h3{ font-size:1.12rem; }
@@ -365,12 +382,19 @@
 <section class="about" id="about">
   <div class="wrap">
     <div class="baker-frame">
-      <div class="baker-avatar">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="78" r="46" fill="#4A1730"/>
+      <div class="baker-avatar" id="bakerAvatar">
+        <svg viewBox="0 0 200 200" id="bakerSvg">
           <path d="M40 190 Q100 120 160 190 Z" fill="#4A1730"/>
-          <circle cx="100" cy="78" r="34" fill="#F3D9C4"/>
+          <circle cx="100" cy="98" r="40" fill="#F3D9C4"/>
+          <path d="M64 92 Q60 40 100 40 Q140 40 136 92 Q100 78 64 92 Z" fill="#FFF6E9" stroke="#EADFCB" stroke-width="2"/>
+          <ellipse cx="100" cy="40" rx="38" ry="14" fill="#FFF6E9" stroke="#EADFCB" stroke-width="2"/>
+          <path d="M58 94 Q100 106 142 94 L142 102 Q100 116 58 102 Z" fill="#FFF6E9" stroke="#EADFCB" stroke-width="2"/>
         </svg>
+        <img id="bakerPhoto" style="display:none;" alt="Ramya.M, baker and owner">
+        <label class="photo-upload-btn" title="Upload owner photo">
+          📷
+          <input type="file" id="bakerPhotoInput" accept="image/*">
+        </label>
       </div>
       <h3>Ramya.M</h3>
       <p class="role">Baker &amp; Owner</p>
@@ -467,25 +491,25 @@
 
 <script>
   const cakes = [
-    { id:1, name:"Molten Chocolate Truffle", cat:"Chocolate", price:650, desc:"Dense dark-chocolate sponge with a warm truffle-ganache core.", badge:"Bestseller" },
-    { id:2, name:"Dark Chocolate Fudge", cat:"Chocolate", price:600, desc:"Rich fudge layers with a glossy chocolate ganache finish." },
-    { id:3, name:"Nutella Overload", cat:"Chocolate", price:720, desc:"Chocolate sponge soaked in Nutella cream and hazelnut crunch.", badge:"New" },
-    { id:4, name:"Classic Red Velvet", cat:"Red Velvet", price:680, desc:"Velvety cocoa sponge with tangy cream-cheese frosting.", badge:"Bestseller" },
-    { id:5, name:"Red Velvet Cheesecake Swirl", cat:"Red Velvet", price:780, desc:"Red velvet layered with a baked cheesecake centre.", badge:"New" },
-    { id:6, name:"Black Forest Classic", cat:"Black Forest", price:580, desc:"Chocolate sponge, whipped cream, cherries and chocolate shavings." },
-    { id:7, name:"Cherry Black Forest Deluxe", cat:"Black Forest", price:650, desc:"Extra cherry compote layer with kirsch-soaked sponge." },
-    { id:8, name:"Butterscotch Crunch", cat:"Butterscotch", price:600, desc:"Caramelised butterscotch sponge with praline crunch bits.", badge:"Bestseller" },
-    { id:9, name:"Caramel Butterscotch Praline", cat:"Butterscotch", price:680, desc:"Salted caramel drip with roasted almond praline." },
-    { id:10, name:"Fresh Fruit Medley", cat:"Fruit", price:700, desc:"Vanilla sponge layered with seasonal fresh fruit and cream." },
-    { id:11, name:"Mixed Berry Delight", cat:"Fruit", price:750, desc:"Berry compote and fresh cream between soft vanilla layers." },
-    { id:12, name:"Pineapple Cloud", cat:"Pineapple", price:550, desc:"Light whipped-cream sponge with fresh pineapple chunks.", badge:"Bestseller" },
-    { id:13, name:"Pineapple Coconut Twist", cat:"Pineapple", price:600, desc:"Pineapple sponge with toasted coconut flakes." },
-    { id:14, name:"Custom Photo Cake", cat:"Photo Cakes", price:850, desc:"Edible-print photo cake on a vanilla or chocolate base.", badge:"Made to order" },
-    { id:15, name:"Birthday Special Photo Cake", cat:"Photo Cakes", price:900, desc:"Photo cake with themed fondant decor for birthdays." },
-    { id:16, name:"Choco Chip Cupcakes (Box of 6)", cat:"Cupcakes", price:360, desc:"Soft chocolate-chip cupcakes with buttercream swirl." },
-    { id:17, name:"Red Velvet Cupcakes (Box of 6)", cat:"Cupcakes", price:420, desc:"Mini red velvet cupcakes with cream-cheese topping." },
-    { id:18, name:"Eggless Chocolate Truffle", cat:"Eggless", price:680, desc:"All the richness of the classic truffle cake, completely eggless.", badge:"Eggless" },
-    { id:19, name:"Eggless Vanilla Sprinkle", cat:"Eggless", price:550, desc:"Soft eggless vanilla sponge with rainbow sprinkles.", badge:"Eggless" }
+    { id:1, name:"Molten Chocolate Truffle", cat:"Chocolate", price:650, desc:"Dense dark-chocolate sponge with a warm truffle-ganache core.", badge:"Bestseller", img:"https://images.pexels.com/photos/19940993/pexels-photo-19940993.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:2, name:"Dark Chocolate Fudge", cat:"Chocolate", price:600, desc:"Rich fudge layers with a glossy chocolate ganache finish.", img:"https://images.pexels.com/photos/8439888/pexels-photo-8439888.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:3, name:"Nutella Overload", cat:"Chocolate", price:720, desc:"Chocolate sponge soaked in Nutella cream and hazelnut crunch.", badge:"New", img:"https://images.pexels.com/photos/30873820/pexels-photo-30873820.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:4, name:"Classic Red Velvet", cat:"Red Velvet", price:680, desc:"Velvety cocoa sponge with tangy cream-cheese frosting.", badge:"Bestseller", img:"https://images.pexels.com/photos/6133313/pexels-photo-6133313.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:5, name:"Red Velvet Cheesecake Swirl", cat:"Red Velvet", price:780, desc:"Red velvet layered with a baked cheesecake centre.", badge:"New", img:"https://images.pexels.com/photos/6133310/pexels-photo-6133310.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:6, name:"Black Forest Classic", cat:"Black Forest", price:580, desc:"Chocolate sponge, whipped cream, cherries and chocolate shavings.", img:"https://images.pexels.com/photos/2147868/pexels-photo-2147868.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:7, name:"Cherry Black Forest Deluxe", cat:"Black Forest", price:650, desc:"Extra cherry compote layer with kirsch-soaked sponge.", img:"https://images.pexels.com/photos/8802102/pexels-photo-8802102.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:8, name:"Butterscotch Crunch", cat:"Butterscotch", price:600, desc:"Caramelised butterscotch sponge with praline crunch bits.", badge:"Bestseller", img:"https://images.pexels.com/photos/10249466/pexels-photo-10249466.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:9, name:"Caramel Butterscotch Praline", cat:"Butterscotch", price:680, desc:"Salted caramel drip with roasted almond praline.", img:"https://images.pexels.com/photos/19550623/pexels-photo-19550623.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:10, name:"Fresh Fruit Medley", cat:"Fruit", price:700, desc:"Vanilla sponge layered with seasonal fresh fruit and cream.", img:"https://images.pexels.com/photos/3913295/pexels-photo-3913295.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:11, name:"Mixed Berry Delight", cat:"Fruit", price:750, desc:"Berry compote and fresh cream between soft vanilla layers.", img:"https://images.pexels.com/photos/27497012/pexels-photo-27497012.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:12, name:"Pineapple Cloud", cat:"Pineapple", price:550, desc:"Light whipped-cream sponge with fresh pineapple chunks.", badge:"Bestseller", img:"https://images.pexels.com/photos/34637993/pexels-photo-34637993.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:13, name:"Pineapple Coconut Twist", cat:"Pineapple", price:600, desc:"Pineapple sponge with toasted coconut flakes.", img:"https://images.pexels.com/photos/14242068/pexels-photo-14242068.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:14, name:"Custom Photo Cake", cat:"Photo Cakes", price:850, desc:"Edible-print photo cake on a vanilla or chocolate base.", badge:"Made to order", img:"https://images.pexels.com/photos/28729584/pexels-photo-28729584.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:15, name:"Birthday Special Photo Cake", cat:"Photo Cakes", price:900, desc:"Photo cake with themed fondant decor for birthdays.", img:"https://images.pexels.com/photos/8015132/pexels-photo-8015132.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:16, name:"Choco Chip Cupcakes (Box of 6)", cat:"Cupcakes", price:360, desc:"Soft chocolate-chip cupcakes with buttercream swirl.", img:"https://images.pexels.com/photos/9295343/pexels-photo-9295343.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:17, name:"Red Velvet Cupcakes (Box of 6)", cat:"Cupcakes", price:420, desc:"Mini red velvet cupcakes with cream-cheese topping.", img:"https://images.pexels.com/photos/36650247/pexels-photo-36650247.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:18, name:"Eggless Chocolate Truffle", cat:"Eggless", price:680, desc:"All the richness of the classic truffle cake, completely eggless.", badge:"Eggless", img:"https://images.pexels.com/photos/34281975/pexels-photo-34281975.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" },
+    { id:19, name:"Eggless Vanilla Sprinkle", cat:"Eggless", price:550, desc:"Soft eggless vanilla sponge with rainbow sprinkles.", badge:"Eggless", img:"https://images.pexels.com/photos/37748387/pexels-photo-37748387.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop" }
   ];
 
   const categories = ["All", ...new Set(cakes.map(c => c.cat))];
@@ -521,7 +545,9 @@
     grid.innerHTML = list.map(c => `
       <div class="card">
         ${c.badge ? `<div class="card-badge">${c.badge}</div>` : ''}
-        <div class="card-art" style="background:${cardGradient(c.id)}"></div>
+        <div class="card-art" style="background:${cardGradient(c.id)}">
+          <img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.style.display='none'">
+        </div>
         <div class="card-body">
           <div class="card-cat">${c.cat}</div>
           <h3>${c.name}</h3>
@@ -630,6 +656,41 @@
   renderFilters();
   renderGrid();
   updateCartUI();
+
+  // --- Owner photo upload ---
+  (function(){
+    const svgEl = document.getElementById('bakerSvg');
+    const imgEl = document.getElementById('bakerPhoto');
+    const inputEl = document.getElementById('bakerPhotoInput');
+
+    // Restore a previously uploaded photo on page load, if any
+    try {
+      const saved = localStorage.getItem('ownerPhoto');
+      if (saved) {
+        imgEl.src = saved;
+        imgEl.style.display = 'block';
+        svgEl.style.display = 'none';
+      }
+    } catch(e) { /* localStorage unavailable, ignore */ }
+
+    inputEl.addEventListener('change', function(e){
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        alert('Please choose an image file.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(evt){
+        const dataUrl = evt.target.result;
+        imgEl.src = dataUrl;
+        imgEl.style.display = 'block';
+        svgEl.style.display = 'none';
+        try { localStorage.setItem('ownerPhoto', dataUrl); } catch(e) { /* storage full or unavailable */ }
+      };
+      reader.readAsDataURL(file);
+    });
+  })();
 </script>
 
 </body>
