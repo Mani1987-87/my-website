@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven-3.9' // Must match the exact name configured in Manage Jenkins -> Tools
+    }
+
     environment {
         IMAGE_NAME = "mywebsite"
         CONTAINER_NAME = "mywebsite-container"
