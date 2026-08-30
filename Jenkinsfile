@@ -60,7 +60,7 @@ pipeline {
         stage('Smoke Test') {
            steps {
                  sh 'sleep 5'
-                 sh 'curl -f http://localhost:8081/actuator/health'
+                 sh 'curl -f http://localhost:8081/health'
     }
 }
     }
