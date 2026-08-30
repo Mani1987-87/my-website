@@ -1,9 +1,269 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manikart - Shop Everything</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  body {
+    background: linear-gradient(270deg, #ff0000, #ff9900, #ffee00, #33ff00, #00fff2, #0066ff, #cc00ff, #ff0000);
+    background-size: 1600% 1600%;
+    animation: rainbow 20s ease infinite;
+    min-height: 100vh;
+  }
+
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  header {
+    background: rgba(255,255,255,0.9);
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .logo {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff0055, #7000ff, #00c3ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  nav a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-bar input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 220px;
+  }
+
+  .cart-btn {
+    background: #111;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .products {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+  }
+
+  .card-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .card-body h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #222;
+  }
+
+  .price {
+    font-weight: 700;
+    color: #d6006c;
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #7000ff, #ff0055);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .add-btn:hover {
+    opacity: 0.9;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+</style>
 </head>
 <body>
-    <h1>Welcome to My Website!</h1>
+
+<header>
+  <div class="logo">Manikart</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Categories</a>
+    <a href="#">Deals</a>
+    <a href="#">About</a>
+  </nav>
+  <div class="search-bar">
+    <input type="text" placeholder="Search products...">
+    <a href="#" class="cart-btn">🛒 Cart (0)</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Welcome to Manikart</h1>
+  <p>Your one-stop shop for everything — test store demo</p>
+</section>
+
+<section class="products">
+
+  <div class="card">
+    <div class="card-img" style="background:#ffe6f0;">👟</div>
+    <div class="card-body">
+      <h3>Running Shoes</h3>
+      <div class="price">₹1,499 <span class="old-price">₹2,499</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#e6f0ff;">🎧</div>
+    <div class="card-body">
+      <h3>Wireless Headphones</h3>
+      <div class="price">₹2,199 <span class="old-price">₹3,999</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#fff5e6;">⌚</div>
+    <div class="card-body">
+      <h3>Smart Watch</h3>
+      <div class="price">₹3,299 <span class="old-price">₹4,999</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#e6ffe9;">🎒</div>
+    <div class="card-body">
+      <h3>Travel Backpack</h3>
+      <div class="price">₹999 <span class="old-price">₹1,799</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#f0e6ff;">📱</div>
+    <div class="card-body">
+      <h3>Smartphone</h3>
+      <div class="price">₹14,999 <span class="old-price">₹18,999</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#e6fffa;">☕</div>
+    <div class="card-body">
+      <h3>Coffee Maker</h3>
+      <div class="price">₹1,799 <span class="old-price">₹2,599</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#fff0e6;">🧴</div>
+    <div class="card-body">
+      <h3>Skincare Combo</h3>
+      <div class="price">₹599 <span class="old-price">₹899</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-img" style="background:#eaffea;">🛋️</div>
+    <div class="card-body">
+      <h3>Bean Bag Chair</h3>
+      <div class="price">₹2,999 <span class="old-price">₹4,499</span></div>
+      <button class="add-btn">Add to Cart</button>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Manikart. Test website — not a real store.
+</footer>
+
 </body>
 </html>
