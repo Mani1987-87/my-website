@@ -58,13 +58,11 @@ pipeline {
         }
 
         stage('Smoke Test') {
-            steps {
-                sh '''
-                    sleep 5
-                    curl -f http://localhost:${APP_PORT}/health
-                '''
-            }
-        }
+    	    steps {
+        sh 'sleep 5'
+        sh 'curl -f http://localhost:8081/'
+    }
+}
     }
 
     post {
