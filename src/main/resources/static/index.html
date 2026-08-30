@@ -3,267 +3,634 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manikart - Shop Everything</title>
+<title>Mani's Cakes — Handcrafted by Ramya.M</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Mulish:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  :root{
+    --berry:#6B2142;
+    --berry-dark:#4A1730;
+    --buttercream:#FFF6E9;
+    --card:#FFFDF8;
+    --rose:#F0A9BC;
+    --gold:#C99A3B;
+    --ink:#2B1B21;
+    --ink-soft:#6b5560;
+    --line:#EADFCB;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(74,23,48,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--buttercream);
+    color:var(--ink);
+    font-family:'Mulish', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    color:var(--berry-dark);
+    margin:0;
+  }
+  .mono{ font-family:'Space Mono', monospace; letter-spacing:0.02em; }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    color:var(--gold);
+    font-weight:700;
+  }
+  button{ font-family:inherit; cursor:pointer; }
 
-  body {
-    background: linear-gradient(270deg, #ff0000, #ff9900, #ffee00, #33ff00, #00fff2, #0066ff, #cc00ff, #ff0000);
-    background-size: 1600% 1600%;
-    animation: rainbow 20s ease infinite;
-    min-height: 100vh;
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,246,233,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-mark{
+    width:42px; height:42px; border-radius:50%;
+    background:var(--berry);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--buttercream); font-family:'Fraunces',serif; font-weight:700; font-size:1.1rem;
+    border:2px solid var(--gold);
+  }
+  .logo-text{ line-height:1.1; }
+  .logo-text strong{ font-family:'Fraunces', serif; font-size:1.25rem; color:var(--berry-dark); display:block; }
+  .logo-text span{ font-size:0.68rem; color:var(--ink-soft); font-family:'Space Mono',monospace; letter-spacing:0.08em; }
+  nav.links{ display:flex; gap:28px; font-weight:700; font-size:0.94rem; }
+  nav.links a{ text-decoration:none; color:var(--ink); border-bottom:2px solid transparent; padding-bottom:3px; transition:border-color .2s; }
+  nav.links a:hover{ border-color:var(--gold); }
+  .nav-right{ display:flex; align-items:center; gap:16px; }
+  .cart-btn{
+    position:relative; background:var(--berry); color:var(--buttercream);
+    border:none; border-radius:999px; padding:10px 18px 10px 16px;
+    display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.9rem;
+  }
+  .cart-count{
+    position:absolute; top:-6px; right:-6px;
+    background:var(--gold); color:var(--berry-dark);
+    font-family:'Space Mono',monospace; font-weight:700; font-size:0.72rem;
+    width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--buttercream);
+  }
+  .menu-toggle{ display:none; background:none; border:none; font-size:1.6rem; color:var(--berry); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:70px 0 40px; }
+  .hero .wrap{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center; }
+  .ribbon-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--card); border:1px dashed var(--gold);
+    border-radius:999px; padding:8px 16px 8px 8px; margin-bottom:22px;
+  }
+  .ribbon-badge .seal{
+    width:30px; height:30px; border-radius:50%; background:var(--berry);
+    color:var(--buttercream); display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; font-size:0.78rem; flex-shrink:0;
+  }
+  .ribbon-badge span{ font-size:0.82rem; font-weight:700; color:var(--berry-dark); }
+  .hero h1{ font-size:clamp(2.4rem, 4.2vw, 3.6rem); line-height:1.08; font-weight:600; }
+  .hero h1 em{ font-style:italic; color:var(--gold); font-weight:500; }
+  .hero p.lead{ margin:22px 0 30px; font-size:1.08rem; color:var(--ink-soft); max-width:46ch; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary, .btn-secondary{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:999px; font-weight:800; font-size:0.95rem;
+    text-decoration:none; border:2px solid transparent;
+  }
+  .btn-primary{ background:var(--berry); color:var(--buttercream); }
+  .btn-primary:hover{ background:var(--berry-dark); }
+  .btn-secondary{ background:transparent; color:var(--berry-dark); border-color:var(--berry-dark); }
+  .btn-secondary:hover{ background:var(--berry-dark); color:var(--buttercream); }
+
+  .hero-art{ position:relative; display:flex; justify-content:center; }
+  .hero-stats{ display:flex; gap:0; margin-top:36px; border-top:1px solid var(--line); padding-top:22px; }
+  .hero-stats div{ flex:1; }
+  .hero-stats strong{ font-family:'Fraunces',serif; font-size:1.7rem; color:var(--berry-dark); display:block; }
+  .hero-stats span{ font-size:0.78rem; color:var(--ink-soft); }
+
+  /* ---------- About ---------- */
+  .about{ padding:60px 0; }
+  .about .wrap{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; align-items:center; }
+  .baker-frame{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; box-shadow:var(--shadow);
+  }
+  .baker-avatar{
+    width:100%; aspect-ratio:1/1; border-radius:14px;
+    background:radial-gradient(circle at 30% 25%, #f6d3dd, var(--rose) 55%, var(--berry) 130%);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .baker-avatar svg{ width:78%; }
+  .baker-frame h3{ margin-top:16px; font-size:1.3rem; }
+  .baker-frame p.role{ color:var(--gold); font-weight:700; font-family:'Space Mono',monospace; font-size:0.78rem; margin:4px 0 0; text-transform:uppercase; letter-spacing:0.08em; }
+  .about-copy h2{ font-size:2rem; margin-bottom:18px; }
+  .about-copy p{ color:var(--ink-soft); margin-bottom:14px; }
+  .about-copy blockquote{
+    margin:24px 0 0; padding:18px 22px; border-left:3px solid var(--gold);
+    background:var(--card); border-radius:0 12px 12px 0; font-style:italic; color:var(--berry-dark);
   }
 
-  @keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  /* ---------- Menu ---------- */
+  .menu{ padding:60px 0 40px; }
+  .section-head{ text-align:center; max-width:600px; margin:0 auto 34px; }
+  .section-head h2{ font-size:2.1rem; margin:10px 0 12px; }
+  .section-head p{ color:var(--ink-soft); }
+
+  .filters{
+    display:flex; gap:10px; overflow-x:auto; padding:6px 4px 26px;
+    scrollbar-width:thin;
+  }
+  .filters::-webkit-scrollbar{ height:5px; }
+  .filters::-webkit-scrollbar-thumb{ background:var(--rose); border-radius:10px; }
+  .chip{
+    flex:0 0 auto; border:1.5px solid var(--berry); background:transparent;
+    color:var(--berry-dark); padding:9px 18px; border-radius:999px; font-weight:700; font-size:0.85rem;
+    white-space:nowrap; transition:all .18s;
+  }
+  .chip.active, .chip:hover{ background:var(--berry); color:var(--buttercream); }
+
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(255px,1fr));
+    gap:26px;
+  }
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    position:relative; overflow:hidden; box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+    transition:transform .18s ease;
+  }
+  .card:hover{ transform:translateY(-4px); }
+  .card-badge{
+    position:absolute; top:14px; left:14px; z-index:2;
+    background:var(--gold); color:var(--berry-dark); font-family:'Space Mono',monospace;
+    font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+    padding:5px 10px; border-radius:999px;
+  }
+  .card-art{
+    height:150px; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .card-body{ padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card-body h3{ font-size:1.12rem; }
+  .card-cat{ font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; }
+  .card-body p.desc{ color:var(--ink-soft); font-size:0.88rem; flex:1; margin:0; }
+  .card-foot{
+    display:flex; align-items:center; justify-content:space-between; margin-top:8px;
+    padding-top:12px; border-top:1px dashed var(--line);
+  }
+  .price-tag{
+    font-family:'Space Mono',monospace; font-weight:700; color:var(--berry-dark); font-size:1rem;
+  }
+  .price-tag small{ font-weight:400; color:var(--ink-soft); font-size:0.72rem; }
+  .add-btn{
+    background:var(--berry); color:var(--buttercream); border:none; border-radius:10px;
+    padding:9px 14px; font-weight:800; font-size:0.82rem; display:flex; align-items:center; gap:6px;
+  }
+  .add-btn:hover{ background:var(--berry-dark); }
+  .add-btn.added{ background:var(--gold); color:var(--berry-dark); }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{ padding:50px 0 70px; }
+  .t-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .t-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; box-shadow:var(--shadow);
+  }
+  .t-card p{ color:var(--ink-soft); font-style:italic; margin:0 0 14px; font-size:0.92rem; }
+  .t-name{ font-weight:800; color:var(--berry-dark); font-size:0.88rem; }
+  .t-stars{ color:var(--gold); letter-spacing:2px; margin-bottom:10px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--berry-dark); color:var(--buttercream); padding:56px 0 26px; }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+  footer h4{ font-family:'Fraunces',serif; font-size:1.1rem; margin-bottom:14px; color:var(--buttercream); }
+  footer p, footer a{ color:#e6cfd8; text-decoration:none; font-size:0.9rem; }
+  footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.12); padding-top:20px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.78rem; color:#c9a7b5;
   }
 
-  header {
-    background: rgba(255,255,255,0.9);
-    padding: 18px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  /* ---------- Cart Drawer ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(43,27,33,0.45);
+    opacity:0; pointer-events:none; transition:opacity .25s; z-index:90;
   }
-
-  .logo {
-    font-size: 28px;
-    font-weight: 800;
-    background: linear-gradient(90deg, #ff0055, #7000ff, #00c3ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw;
+    background:var(--buttercream); z-index:100; box-shadow:-14px 0 40px rgba(0,0,0,0.2);
+    transform:translateX(100%); transition:transform .3s ease;
+    display:flex; flex-direction:column;
   }
-
-  nav a {
-    margin: 0 12px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
+  .drawer.open{ transform:translateX(0); }
+  .drawer-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 22px; border-bottom:1px solid var(--line); background:var(--card);
   }
-
-  .search-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .drawer-head h3{ font-size:1.2rem; }
+  .drawer-head button{ background:none; border:none; font-size:1.4rem; color:var(--berry); }
+  .drawer-items{ flex:1; overflow-y:auto; padding:16px 22px; }
+  .empty-cart{ text-align:center; color:var(--ink-soft); margin-top:60px; }
+  .empty-cart svg{ width:70px; margin:0 auto 14px; opacity:0.5; }
+  .cart-item{
+    display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line);
   }
-
-  .search-bar input {
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    width: 220px;
+  .cart-item-thumb{
+    width:56px; height:56px; border-radius:10px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--rose), var(--gold));
   }
-
-  .cart-btn {
-    background: #111;
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 600;
+  .cart-item-info{ flex:1; }
+  .cart-item-info h4{ font-size:0.92rem; margin:0 0 4px; font-family:'Mulish',sans-serif; font-weight:800; color:var(--berry-dark); }
+  .cart-item-info .cat{ font-size:0.68rem; color:var(--ink-soft); font-family:'Space Mono',monospace; }
+  .qty-row{ display:flex; align-items:center; gap:10px; margin-top:8px; }
+  .qty-row button{
+    width:24px; height:24px; border-radius:6px; border:1px solid var(--line);
+    background:var(--card); font-weight:800; color:var(--berry-dark); font-size:0.9rem; line-height:1;
   }
-
-  .hero {
-    text-align: center;
-    padding: 60px 20px;
-    color: #fff;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  .qty-row span{ font-family:'Space Mono',monospace; font-weight:700; }
+  .remove-btn{ background:none; border:none; color:#a5495f; font-size:0.75rem; text-decoration:underline; margin-left:auto; padding:0; }
+  .item-price{ font-family:'Space Mono',monospace; font-weight:700; color:var(--berry-dark); font-size:0.85rem; white-space:nowrap; }
+  .drawer-foot{ padding:20px 22px 26px; border-top:1px solid var(--line); background:var(--card); }
+  .subtotal-row{ display:flex; justify-content:space-between; font-weight:800; font-size:1.05rem; margin-bottom:6px; color:var(--berry-dark); }
+  .subtotal-note{ font-size:0.76rem; color:var(--ink-soft); margin-bottom:16px; }
+  .checkout-btn{
+    width:100%; background:#25D366; color:#fff; border:none; border-radius:12px;
+    padding:14px; font-weight:800; font-size:0.95rem; display:flex; align-items:center; justify-content:center; gap:10px;
   }
+  .checkout-btn:hover{ background:#1ebd59; }
+  .clear-btn{ width:100%; background:none; border:none; color:var(--ink-soft); font-size:0.8rem; margin-top:10px; text-decoration:underline; }
 
-  .hero h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+  @media (max-width:900px){
+    nav.links, .nav-right .cart-btn span.label{ display:none; }
+    .menu-toggle{ display:block; }
+    .hero .wrap, .about .wrap{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .t-grid{ grid-template-columns:1fr; }
   }
-
-  .hero p {
-    font-size: 18px;
-  }
-
-  .products {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px 20px 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-  }
-
-  .card {
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    transition: transform 0.2s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-  }
-
-  .card-img {
-    height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-  }
-
-  .card-body {
-    padding: 16px;
-  }
-
-  .card-body h3 {
-    font-size: 16px;
-    margin-bottom: 6px;
-    color: #222;
-  }
-
-  .price {
-    font-weight: 700;
-    color: #d6006c;
-    font-size: 18px;
-    margin: 8px 0;
-  }
-
-  .old-price {
-    text-decoration: line-through;
-    color: #999;
-    font-size: 14px;
-    margin-left: 8px;
-  }
-
-  .add-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(90deg, #7000ff, #ff0055);
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .add-btn:hover {
-    opacity: 0.9;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    color: #fff;
-    font-weight: 600;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  @media (max-width:520px){
+    .foot-grid{ grid-template-columns:1fr; }
+    .hero-stats{ flex-wrap:wrap; gap:16px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Manikart</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Categories</a>
-    <a href="#">Deals</a>
-    <a href="#">About</a>
-  </nav>
-  <div class="search-bar">
-    <input type="text" placeholder="Search products...">
-    <a href="#" class="cart-btn">🛒 Cart (0)</a>
+  <div class="nav">
+    <a href="#top" class="logo">
+      <div class="logo-mark">R.M</div>
+      <div class="logo-text">
+        <strong>Mani's Cakes</strong>
+        <span>COIMBATORE HOME BAKERY</span>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="#menu">Menu</a>
+      <a href="#about">The Baker</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span class="label">Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <h1>Welcome to Manikart</h1>
-  <p>Your one-stop shop for everything — test store demo</p>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="ribbon-badge">
+        <div class="seal">R.M</div>
+        <span>Handcrafted by Ramya.M · Est. home bakery</span>
+      </div>
+      <h1>Cake is the answer.<br><em>Whatever the question.</em></h1>
+      <p class="lead">Every order at Mani's Cakes is baked fresh, from scratch, in a home kitchen in Coimbatore — no shortcuts, no shelf-stable frosting, just real butter, real fruit, and a recipe book that's been rewritten a hundred times until it was right.</p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn-primary">Browse the menu →</a>
+        <a href="#contact" class="btn-secondary">Order a custom cake</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>9+</strong><span>Years of baking</span></div>
+        <div><strong>40+</strong><span>Flavours on the menu</span></div>
+        <div><strong>5000+</strong><span>Cakes delivered</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 360 400" width="360">
+        <ellipse cx="180" cy="370" rx="130" ry="14" fill="#4A1730" opacity="0.12"/>
+        <rect x="70" y="270" width="220" height="80" rx="14" fill="#F0A9BC"/>
+        <rect x="70" y="270" width="220" height="16" rx="8" fill="#fff" opacity="0.5"/>
+        <rect x="95" y="185" width="170" height="85" rx="14" fill="#6B2142"/>
+        <rect x="95" y="185" width="170" height="16" rx="8" fill="#fff" opacity="0.25"/>
+        <rect x="122" y="105" width="116" height="80" rx="14" fill="#C99A3B"/>
+        <rect x="122" y="105" width="116" height="16" rx="8" fill="#fff" opacity="0.3"/>
+        <g>
+          <rect x="172" y="70" width="6" height="38" fill="#4A1730"/>
+          <path d="M175 60 Q182 72 175 80 Q168 72 175 60 Z" fill="#F0A9BC"/>
+        </g>
+        <circle cx="150" cy="150" r="5" fill="#FFF6E9"/>
+        <circle cx="190" cy="145" r="5" fill="#FFF6E9"/>
+        <circle cx="210" cy="158" r="5" fill="#FFF6E9"/>
+        <circle cx="130" cy="230" r="5" fill="#F0A9BC"/>
+        <circle cx="230" cy="225" r="5" fill="#F0A9BC"/>
+        <circle cx="180" cy="245" r="5" fill="#F0A9BC"/>
+      </svg>
+    </div>
+  </div>
 </section>
 
-<section class="products">
-
-  <div class="card">
-    <div class="card-img" style="background:#ffe6f0;">👟</div>
-    <div class="card-body">
-      <h3>Running Shoes</h3>
-      <div class="price">₹1,499 <span class="old-price">₹2,499</span></div>
-      <button class="add-btn">Add to Cart</button>
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="baker-frame">
+      <div class="baker-avatar">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="78" r="46" fill="#4A1730"/>
+          <path d="M40 190 Q100 120 160 190 Z" fill="#4A1730"/>
+          <circle cx="100" cy="78" r="34" fill="#F3D9C4"/>
+        </svg>
+      </div>
+      <h3>Ramya.M</h3>
+      <p class="role">Baker &amp; Owner</p>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow">The Baker</p>
+      <h2>A kitchen table business, baked one order at a time.</h2>
+      <p>Mani's Cakes started in Ramya.M's own kitchen with a single red velvet recipe and a handful of neighbours who kept asking for more. Today it's grown into a full home-bakery menu — but the process hasn't changed: every cake is still mixed, baked, and frosted by Ramya herself, in small batches, using fresh dairy and no preservatives.</p>
+      <p>Ramya trained in classical baking before coming home to build something of her own, and she still tastes every batter before it goes into the oven. If a cake isn't right, it doesn't leave the kitchen.</p>
+      <blockquote>"I don't bake to sell cakes. I bake so that someone's celebration has one less thing to worry about." — Ramya.M</blockquote>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#e6f0ff;">🎧</div>
-    <div class="card-body">
-      <h3>Wireless Headphones</h3>
-      <div class="price">₹2,199 <span class="old-price">₹3,999</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#fff5e6;">⌚</div>
-    <div class="card-body">
-      <h3>Smart Watch</h3>
-      <div class="price">₹3,299 <span class="old-price">₹4,999</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#e6ffe9;">🎒</div>
-    <div class="card-body">
-      <h3>Travel Backpack</h3>
-      <div class="price">₹999 <span class="old-price">₹1,799</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#f0e6ff;">📱</div>
-    <div class="card-body">
-      <h3>Smartphone</h3>
-      <div class="price">₹14,999 <span class="old-price">₹18,999</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#e6fffa;">☕</div>
-    <div class="card-body">
-      <h3>Coffee Maker</h3>
-      <div class="price">₹1,799 <span class="old-price">₹2,599</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#fff0e6;">🧴</div>
-    <div class="card-body">
-      <h3>Skincare Combo</h3>
-      <div class="price">₹599 <span class="old-price">₹899</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-img" style="background:#eaffea;">🛋️</div>
-    <div class="card-body">
-      <h3>Bean Bag Chair</h3>
-      <div class="price">₹2,999 <span class="old-price">₹4,499</span></div>
-      <button class="add-btn">Add to Cart</button>
-    </div>
-  </div>
-
 </section>
 
-<footer>
-  © 2026 Manikart. Test website — not a real store.
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The Menu</p>
+      <h2>Pick your flavour</h2>
+      <p>Every cake is made to order in 0.5 kg portions. Need a bigger size or a custom design? Add it to cart and mention it at checkout.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="cakeGrid"></div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Reviews</p>
+      <h2>What customers say</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Ordered the Red Velvet Cheesecake Swirl for my daughter's birthday — it disappeared in ten minutes. Nothing tastes this fresh from a regular bakery."</p>
+        <div class="t-name">Priya S.</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Ramya made a custom photo cake for our anniversary with almost no notice. Perfectly moist, and the print came out so clean."</p>
+        <div class="t-name">Karthik R.</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"The eggless chocolate truffle is now the only cake my family asks for. You can genuinely taste that it's handmade."</p>
+        <div class="t-name">Meena V.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Mani's Cakes</h4>
+        <p>Home-baked cakes, cupcakes and custom orders — handcrafted by Ramya.M in Coimbatore, Tamil Nadu.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>📍 Coimbatore, Tamil Nadu</li>
+          <li>📞 +91 98765 43210</li>
+          <li>✉️ hello@maniscakes.in</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon – Sat: 9:00 AM – 8:00 PM</li>
+          <li>Sunday: Order pickup only</li>
+          <li>Custom cakes: 48-hr advance notice</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mani's Cakes · Baked with love by Ramya.M</span>
+      <span>Made in Coimbatore</span>
+    </div>
+  </div>
 </footer>
+
+<!-- Cart Drawer -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your Order</h3>
+    <button onclick="closeCart()">×</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</div>
+
+<script>
+  const cakes = [
+    { id:1, name:"Molten Chocolate Truffle", cat:"Chocolate", price:650, desc:"Dense dark-chocolate sponge with a warm truffle-ganache core.", badge:"Bestseller" },
+    { id:2, name:"Dark Chocolate Fudge", cat:"Chocolate", price:600, desc:"Rich fudge layers with a glossy chocolate ganache finish." },
+    { id:3, name:"Nutella Overload", cat:"Chocolate", price:720, desc:"Chocolate sponge soaked in Nutella cream and hazelnut crunch.", badge:"New" },
+    { id:4, name:"Classic Red Velvet", cat:"Red Velvet", price:680, desc:"Velvety cocoa sponge with tangy cream-cheese frosting.", badge:"Bestseller" },
+    { id:5, name:"Red Velvet Cheesecake Swirl", cat:"Red Velvet", price:780, desc:"Red velvet layered with a baked cheesecake centre.", badge:"New" },
+    { id:6, name:"Black Forest Classic", cat:"Black Forest", price:580, desc:"Chocolate sponge, whipped cream, cherries and chocolate shavings." },
+    { id:7, name:"Cherry Black Forest Deluxe", cat:"Black Forest", price:650, desc:"Extra cherry compote layer with kirsch-soaked sponge." },
+    { id:8, name:"Butterscotch Crunch", cat:"Butterscotch", price:600, desc:"Caramelised butterscotch sponge with praline crunch bits.", badge:"Bestseller" },
+    { id:9, name:"Caramel Butterscotch Praline", cat:"Butterscotch", price:680, desc:"Salted caramel drip with roasted almond praline." },
+    { id:10, name:"Fresh Fruit Medley", cat:"Fruit", price:700, desc:"Vanilla sponge layered with seasonal fresh fruit and cream." },
+    { id:11, name:"Mixed Berry Delight", cat:"Fruit", price:750, desc:"Berry compote and fresh cream between soft vanilla layers." },
+    { id:12, name:"Pineapple Cloud", cat:"Pineapple", price:550, desc:"Light whipped-cream sponge with fresh pineapple chunks.", badge:"Bestseller" },
+    { id:13, name:"Pineapple Coconut Twist", cat:"Pineapple", price:600, desc:"Pineapple sponge with toasted coconut flakes." },
+    { id:14, name:"Custom Photo Cake", cat:"Photo Cakes", price:850, desc:"Edible-print photo cake on a vanilla or chocolate base.", badge:"Made to order" },
+    { id:15, name:"Birthday Special Photo Cake", cat:"Photo Cakes", price:900, desc:"Photo cake with themed fondant decor for birthdays." },
+    { id:16, name:"Choco Chip Cupcakes (Box of 6)", cat:"Cupcakes", price:360, desc:"Soft chocolate-chip cupcakes with buttercream swirl." },
+    { id:17, name:"Red Velvet Cupcakes (Box of 6)", cat:"Cupcakes", price:420, desc:"Mini red velvet cupcakes with cream-cheese topping." },
+    { id:18, name:"Eggless Chocolate Truffle", cat:"Eggless", price:680, desc:"All the richness of the classic truffle cake, completely eggless.", badge:"Eggless" },
+    { id:19, name:"Eggless Vanilla Sprinkle", cat:"Eggless", price:550, desc:"Soft eggless vanilla sponge with rainbow sprinkles.", badge:"Eggless" }
+  ];
+
+  const categories = ["All", ...new Set(cakes.map(c => c.cat))];
+  let activeCat = "All";
+  let cart = {}; // id -> qty
+
+  function renderFilters(){
+    const el = document.getElementById('filters');
+    el.innerHTML = categories.map(cat =>
+      `<button class="chip ${cat===activeCat?'active':''}" onclick="setFilter('${cat}')">${cat}</button>`
+    ).join('');
+  }
+
+  function setFilter(cat){
+    activeCat = cat;
+    renderFilters();
+    renderGrid();
+  }
+
+  function cardGradient(id){
+    const grads = [
+      'linear-gradient(135deg,#6B2142,#F0A9BC)',
+      'linear-gradient(135deg,#C99A3B,#FFF6E9)',
+      'linear-gradient(135deg,#4A1730,#C99A3B)',
+      'linear-gradient(135deg,#F0A9BC,#C99A3B)'
+    ];
+    return grads[id % grads.length];
+  }
+
+  function renderGrid(){
+    const grid = document.getElementById('cakeGrid');
+    const list = activeCat === "All" ? cakes : cakes.filter(c => c.cat === activeCat);
+    grid.innerHTML = list.map(c => `
+      <div class="card">
+        ${c.badge ? `<div class="card-badge">${c.badge}</div>` : ''}
+        <div class="card-art" style="background:${cardGradient(c.id)}"></div>
+        <div class="card-body">
+          <div class="card-cat">${c.cat}</div>
+          <h3>${c.name}</h3>
+          <p class="desc">${c.desc}</p>
+          <div class="card-foot">
+            <div class="price-tag">₹${c.price}<small> / 0.5kg</small></div>
+            <button class="add-btn" id="add-${c.id}" onclick="addToCart(${c.id})">+ Add</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function addToCart(id){
+    cart[id] = (cart[id] || 0) + 1;
+    updateCartUI();
+    const btn = document.getElementById(`add-${id}`);
+    if(btn){
+      btn.textContent = "Added ✓";
+      btn.classList.add('added');
+      setTimeout(()=>{ btn.textContent = "+ Add"; btn.classList.remove('added'); }, 900);
+    }
+  }
+
+  function changeQty(id, delta){
+    cart[id] = (cart[id] || 0) + delta;
+    if(cart[id] <= 0) delete cart[id];
+    updateCartUI();
+  }
+
+  function removeItem(id){
+    delete cart[id];
+    updateCartUI();
+  }
+
+  function clearCart(){
+    cart = {};
+    updateCartUI();
+  }
+
+  function cartEntries(){
+    return Object.entries(cart).map(([id, qty]) => ({ cake: cakes.find(c => c.id == id), qty }));
+  }
+
+  function updateCartUI(){
+    const entries = cartEntries();
+    const totalCount = entries.reduce((s,e) => s + e.qty, 0);
+    document.getElementById('cartCount').textContent = totalCount;
+
+    const itemsEl = document.getElementById('drawerItems');
+    const footEl = document.getElementById('drawerFoot');
+
+    if(entries.length === 0){
+      itemsEl.innerHTML = `
+        <div class="empty-cart">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#6B2142" stroke-width="2"><circle cx="24" cy="54" r="4"/><circle cx="48" cy="54" r="4"/><path d="M4 6h8l6 34h34l6-24H16"/></svg>
+          <p>Your cart is empty.<br>Add a cake to get started.</p>
+        </div>`;
+      footEl.innerHTML = '';
+      return;
+    }
+
+    itemsEl.innerHTML = entries.map(({cake, qty}) => `
+      <div class="cart-item">
+        <div class="cart-item-thumb"></div>
+        <div class="cart-item-info">
+          <h4>${cake.name}</h4>
+          <div class="cat">${cake.cat} · ₹${cake.price} / 0.5kg</div>
+          <div class="qty-row">
+            <button onclick="changeQty(${cake.id}, -1)">−</button>
+            <span>${qty}</span>
+            <button onclick="changeQty(${cake.id}, 1)">+</button>
+            <button class="remove-btn" onclick="removeItem(${cake.id})">Remove</button>
+          </div>
+        </div>
+        <div class="item-price">₹${cake.price * qty}</div>
+      </div>
+    `).join('');
+
+    const subtotal = entries.reduce((s,e) => s + e.cake.price * e.qty, 0);
+    const message = encodeURIComponent(
+      "Hi Ramya! I'd like to order:\n" +
+      entries.map(e => `• ${e.cake.name} x${e.qty} — ₹${e.cake.price * e.qty}`).join("\n") +
+      `\n\nTotal: ₹${subtotal}\n\nPlease confirm availability and delivery time.`
+    );
+
+    footEl.innerHTML = `
+      <div class="subtotal-row"><span>Subtotal</span><span>₹${subtotal}</span></div>
+      <div class="subtotal-note">Delivery charges &amp; final total confirmed over WhatsApp.</div>
+      <a class="checkout-btn" href="https://wa.me/919876543210?text=${message}" target="_blank" rel="noopener">
+        💬 Order via WhatsApp
+      </a>
+      <button class="clear-btn" onclick="clearCart()">Clear cart</button>
+    `;
+  }
+
+  function openCart(){
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('show');
+  }
+  function closeCart(){
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  renderFilters();
+  renderGrid();
+  updateCartUI();
+</script>
 
 </body>
 </html>
