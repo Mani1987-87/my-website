@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name ${CONTAINER_NAME} -p ${APP_PORT}:8080 ${IMAGE_NAME}:latest
+                    docker run -d --name mywebsite-container -p 8081:8080 mywebsite:latest
                 '''
             }
         }
