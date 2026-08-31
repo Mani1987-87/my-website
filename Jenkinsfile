@@ -56,7 +56,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f ${CONTAINER_NAME} || true
-                    docker run -d --name mywebsite-container -p 8081:8080 mywebsite:latest
+                    docker run -d --name mywebsite-container --restart unless-stopped -p 8081:8080 mywebsite:latest
                 '''
             }
         }
