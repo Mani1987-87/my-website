@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/5 * * * *') // Checks GitHub for new commits every 5 minutes
+    }
+
     tools {
         maven 'Maven-3.9' // Must match the exact name configured in Manage Jenkins -> Tools
     }
@@ -58,11 +62,11 @@ pipeline {
         }
 
         stage('Smoke Test') {
-           steps {
-                 sh 'sleep 30'
-                 sh 'curl -f http://localhost:8081/actuator/health'
-    }
-}
+            steps {
+                sh 'sleep 30'
+                sh 'curl -f http://localhost:8081/actuator/health'
+            }
+        }
     }
 
     post {
