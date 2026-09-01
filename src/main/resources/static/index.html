@@ -1,415 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aadhi Yogi Constructions | ER. Gowtham G</title>
-  <style>
-    :root {
-      --primary: #c85a17;
-      --primary-dark: #a0430e;
-      --dark: #1f2421;
-      --light: #f9f9f6;
-      --gray: #6c757d;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-
-    /* CSS Brick Pattern Background */
-    .brick-bg {
-      background-color: #8d3a2b;
-      background-image: 
-        linear-gradient(335deg, rgba(0,0,0,0.3) 0px, transparent 2px),
-        linear-gradient(155deg, rgba(255,255,255,0.1) 0px, transparent 2px),
-        linear-gradient(335deg, rgba(0,0,0,0.3) 0px, transparent 2px),
-        linear-gradient(155deg, rgba(255,255,255,0.1) 0px, transparent 2px);
-      background-size: 58px 58px;
-      background-position: 0 0, 2px 2px, 29px 29px, 31px 31px;
-      color: #ffffff;
-    }
-
-    header {
-      background: rgba(31, 36, 33, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .logo span {
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(0, 0, 0, 0.65);
-      padding: 3rem 2rem;
-      border-radius: 8px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.8rem 1.8rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Section Styling */
-    section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--primary);
-      margin: 0.5rem auto 0;
-    }
-
-    /* Proprietor Section */
-    .proprietor-card {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2rem;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .proprietor-img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--gray);
-      border: 4px solid var(--primary);
-    }
-
-    .proprietor-info {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .proprietor-info h3 {
-      font-size: 1.8rem;
-      color: var(--dark);
-    }
-
-    .proprietor-info .title {
-      color: var(--primary);
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .service-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .service-content {
-      padding: 1.5rem;
-    }
-
-    .service-content h3 {
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-
-    /* Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .project-photo {
-      width: 100%;
-      height: 220px;
-      background: #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gray);
-      font-weight: bold;
-    }
-
-    .project-details {
-      padding: 1.5rem;
-    }
-
-    .project-details h4 {
-      margin-bottom: 0.5rem;
-
-    }
-
-    /* Contact Section */
-    .contact-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .contact-box {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 3rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    footer {
-      background: var(--dark);
-      color: #fff;
-      text-align: center;
-      padding: 1.5rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadhiyogi Herbs - Pure & Authentic Wellness</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: '#1b4332',
+                        sage: '#40916c',
+                        mint: '#74c69d',
+                        earth: '#f4f1de',
+                        clay: '#e07a5f',
+                        charcoal: '#2d3142'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-font { font-family: 'Playfair Display', serif; }
+        /* Smooth transition for slide-over panels */
+        .slide-over { transition: transform 0.3s ease-in-out; }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-charcoal antialiased overflow-x-hidden">
 
-  <!-- Header / Navigation -->
-  <header>
-    <nav>
-      <div class="logo">Aadhi Yogi <span>Constructions</span></div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Hero Section with Brick Background -->
-  <div id="home" class="brick-bg hero">
-    <div class="hero-content">
-      <h1>Building Dreams with Strength & Integrity</h1>
-      <p>Quality Civil Construction & Structural Excellence</p>
-      <a href="#projects" class="btn">Explore Projects</a>
+    <!-- Announcement Bar -->
+    <div class="bg-forest text-earth text-center py-2 text-xs font-medium tracking-wider px-4">
+        🌿 FREE SHIPPING ON ALL ORDERS ABOVE ₹499 | USE CODE: <span class="font-bold text-mint">AADHIOYOGI10</span> FOR 10% OFF
     </div>
-  </div>
 
-  <!-- Proprietor Section -->
-  <section id="about">
-    <h2 class="section-title">About Our Leadership</h2>
-    <div class="proprietor-card">
-      <!-- REPLACE WITH PROPRIETOR IMAGE: <img src="images/gowtham.jpg" alt="ER. Gowtham G" class="proprietor-img"> -->
-      <div class="proprietor-img">GG</div>
-      <div class="proprietor-info">
-        <h3>ER. Gowtham G</h3>
-        <div class="title">Proprietor & Lead Engineer</div>
-        <p>With expertise in structural design, site management, and modern construction techniques, ER. Gowtham G leads Aadhi Yogi Constructions with a commitment to delivering high-quality residential and commercial projects on time and within budget.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-forest rounded-full flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-leaf text-xl text-mint"></i>
+                </div>
+                <div>
+                    <span class="serif-font text-2xl font-bold tracking-tight text-forest block -mb-1">Aadhiyogi</span>
+                    <span class="text-[10px] tracking-[0.25em] uppercase font-bold text-sage block">Herbs & Wellness</span>
+                </div>
+            </a>
 
-  <!-- Services Section -->
-  <section id="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid">
-      
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" alt="Residential Construction">
-        <div class="service-content">
-          <h3>Residential Construction</h3>
-          <p>Custom homes, villas, and apartment structures built to highest structural safety standards.</p>
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
+                <a href="#" class="text-forest border-b-2 border-forest pb-1">Home</a>
+                <a href="#shop" class="text-gray-600 hover:text-forest transition-colors pb-1">Shop Herbs</a>
+                <a href="#philosophy" class="text-gray-600 hover:text-forest transition-colors pb-1">Our Philosophy</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-forest transition-colors pb-1">Reviews</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-5">
+                <button class="text-gray-600 hover:text-forest transition-colors relative" id="search-toggle">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button onclick="toggleCart()" class="text-gray-600 hover:text-forest transition-colors relative">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-clay text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+                <button class="md:hidden text-gray-600 hover:text-forest" id="menu-toggle">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Commercial Projects">
-        <div class="service-content">
-          <h3>Commercial Construction</h3>
-          <p>Office spaces, retail structures, and industrial complexes built for durability and functionality.</p>
+    <!-- Hero Section -->
+    <section class="relative bg-earth/40 overflow-hidden py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-mint/20 text-forest border border-mint/30">
+                        ✨ 100% Organic & Ethically Sourced
+                    </span>
+                    <h1 class="serif-font text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-[1.1]">
+                        Ancient remedies for <br><span class="italic text-sage">modern conscious living.</span>
+                    </h1>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Reclaim your vitality with wildcrafted herbs, roots, and traditional formulations curated from pristine regional eco-landscapes.
+                    </p>
+                    <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="#shop" class="bg-forest hover:bg-forest/90 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-forest/10 hover:shadow-xl transition-all duration-200 text-center tracking-wide text-sm">
+                            Explore Shop
+                        </a>
+                        <a href="#philosophy" class="bg-white hover:bg-gray-50 text-forest font-semibold px-8 py-4 rounded-xl border border-gray-200 shadow-sm transition-all duration-200 text-center tracking-wide text-sm">
+                            Our Story
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-mint/20 absolute -z-10 blur-2xl top-10"></div>
+                    <img src="https://unsplash.com" alt="Natural Organic Herbs" class="rounded-2xl shadow-2xl object-cover w-full max-w-md aspect-[4/5]">
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" alt="Renovation & Remodeling">
-        <div class="service-content">
-          <h3>Renovation & Remodeling</h3>
-          <p>Upgrading and retrofitting existing buildings with modern aesthetic finishes and engineering strength.</p>
+    <!-- Value Banners -->
+    <section class="bg-white border-b border-gray-100 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center divide-x-0 md:divide-x divide-gray-100">
+                <div class="space-y-2">
+                    <div class="text-sage text-2xl"><i class="fa-solid fa-seedling"></i></div>
+                    <h3 class="font-bold text-sm text-forest uppercase tracking-wider">100% Wildcrafted</h3>
+                    <p class="text-xs text-gray-500 max-w-[180px] mx-auto">Pure species harvested directly from native soil ecosystems.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-sage text-2xl"><i class="fa-solid fa-flask-vial"></i></div>
+                    <h3 class="font-bold text-sm text-forest uppercase tracking-wider">Lab Tested</h3>
+                    <p class="text-xs text-gray-500 max-w-[180px] mx-auto">Rigorous verification for complete purity and zero heavy metals.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-sage text-2xl"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <h3 class="font-bold text-sm text-forest uppercase tracking-wider">Fair Trade Trade</h3>
+                    <p class="text-xs text-gray-500 max-w-[180px] mx-auto">Supporting regional indigenous farming co-operatives directly.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-sage text-2xl"><i class="fa-solid fa-box-tissue"></i></div>
+                    <h3 class="font-bold text-sm text-forest uppercase tracking-wider">Eco Packaging</h3>
+                    <p class="text-xs text-gray-500 max-w-[180px] mx-auto">Biodegradable pouches and glass jars to protect Mother Earth.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Interior & Structural Design">
-        <div class="service-content">
-          <h3>Interior & Structural Planning</h3>
-          <p>Complete 2D/3D elevations, structural analysis, and interior layout planning tailored to client requirements.</p>
+    <!-- Interactive E-Commerce Product Catalog Section -->
+    <section id="shop" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto space-y-3 mb-12">
+            <span class="text-xs uppercase tracking-[0.2em] font-bold text-sage">The Apothecary</span>
+            <h2 class="serif-font text-3xl sm:text-4xl font-bold text-forest">Shop Regional Whole Herbs</h2>
+            <p class="text-gray-500 text-sm">Select premium traditional formulas to align your health parameters naturally.</p>
         </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <h2 class="section-title">Completed Projects</h2>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <!-- REPLACE WITH REAL PHOTO: <img src="images/project1.jpg" alt="Project 1" style="width:100%; height:220px; object-fit:cover;"> -->
-        <div class="project-photo">Project 1 Photo Placeholder</div>
-        <div class="project-details">
-          <h4>Modern Residential Villa</h4>
-          <p><strong>Location:</strong> Add Location</p>
-          <p><strong>Area:</strong> Add sq. ft.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <!-- REPLACE WITH REAL PHOTO: <img src="images/project2.jpg" alt="Project 2" style="width:100%; height:220px; object-fit:cover;"> -->
-        <div class="project-photo">Project 2 Photo Placeholder</div>
-        <div class="project-details">
-          <h4>Commercial Office Complex</h4>
-          <p><strong>Location:</strong> Add Location</p>
-          <p><strong>Area:</strong> Add sq. ft.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <!-- REPLACE WITH REAL PHOTO: <img src="images/project3.jpg" alt="Project 3" style="width:100%; height:220px; object-fit:cover;"> -->
-        <div class="project-photo">Project 3 Photo Placeholder</div>
-        <div class="project-details">
-          <h4>Luxury Apartment Complex</h4>
-          <p><strong>Location:</strong> Add Location</p>
-          <p><strong>Area:</strong> Add sq. ft.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Contact Section with Brick Background -->
-  <div id="contact" class="brick-bg" style="padding: 4rem 2rem;">
-    <div class="contact-wrapper">
-      <div class="contact-box">
-        <h2 style="margin-bottom: 1.5rem;">Contact Aadhi Yogi Constructions</h2>
-        <p><strong>Proprietor:</strong> ER. Gowtham G</p>
-        <p><strong>Phone:</strong> +91 XXXXX XXXXX</p>
-        <p><strong>Email:</strong> contact@aadhiyogiconstructions.com</p>
-        <p><strong>Address:</strong> Add Company Address</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Aadhi Yogi Constructions. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-container">
+            <button onclick="filterProducts('all')" class="filter-btn active px-5 py-2 rounded-xl text-xs font-semibold tracking-wide uppercase transition-all bg-forest text-white shadow-md">All Herbs</button>
+            <button onclick="filterProducts('roots')" class="filter-btn px-5 py-2 rounded-xl text-xs font-semibold tracking-wide uppercase transition-all bg-white border border-gray-200 text-gray-600 hover:border-sage">Roots & Rhizomes</button>
+            <button onclick="filterProducts('leaves')" class="filter-btn px-5 py-2 rounded-xl text-xs font-semibold tracking-wide uppercase transition-all bg-white border border-gray-200 text-gray-600 hover:border-sage">Leaves & Powders</button>
+            <button onclick="filterProducts('immunity')" class="filter-btn px-5 py-2 rounded-xl text-xs font-semibold tracking-wide uppercase transition-all bg-white border border-gray-200 text-gray-600 hover:border-sage">Immunity Tonics</button>
